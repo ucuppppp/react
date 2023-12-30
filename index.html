@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>React</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+      
+      const container = document.getElementById('root')
+      const root = ReactDOM.createRoot(container)
+      const students = ['raditya', 'ucup', 'aslam']
+      
+      function Header({author}) {
+        return (<h1>Belajar React Bareng {author ? author : 'Raditya'}</h1>)
+      }
+      
+      function HomePage() {
+        let [likes, setLikes] = React.useState(0)
+  
+      function Buttons(props, {status}){
+        return (
+          <button onClick={props.event}>
+            {props.value}
+          </button>
+        )
+      }
+
+        function reset() {
+          setLikes(likes = 0)
+        }
+
+        function plusClick() {
+          setLikes(likes < 9 ? likes + 1 : likes = "done")
+        }
+        function minusClick() {
+          setLikes(likes > 1 ? likes - 1 : likes = "done")
+        }
+
+        function setStatus() {
+          if(setLikes(likes !== "done")) {
+            return "disabled"
+          } else {
+            return '';
+          }
+        }
+
+
+        return(
+          <>
+            <Header />
+            <Header author="Ucup"/>
+            <ul>
+              {
+                students.map((student ,i) => (
+                  <li key={i}>{student}</li>
+                ))
+              }
+            </ul>
+            <Buttons event={minusClick}  value="-" />
+            <span> {likes} </span>
+            <Buttons event={plusClick}  value="+" />
+            <br/>
+            <br/>
+            <Buttons event={reset}  value="Reseeet" status={setStatus} />
+          </>
+        )
+      }
+
+      root.render(<HomePage />);
+    </script>
+  </body>
+</html>
